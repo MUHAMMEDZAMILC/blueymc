@@ -1,4 +1,4 @@
-import 'package:blueymc/splashscreen.dart';
+import 'package:blueymc/screens/splashscreen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        primaryColor: const Color.fromARGB(0, 24, 5, 90),
+        primaryColor: Color(0xFF022542),
       ),
       home: const SplashScreen(),
     );
