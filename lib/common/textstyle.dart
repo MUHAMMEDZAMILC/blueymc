@@ -17,6 +17,8 @@ const TextStyle small =
     TextStyle(color: Colors.white, fontSize: 22, fontWeight: FontWeight.w700);
 const TextStyle small2 =
     TextStyle(color: Colors.black, fontSize: 22, fontWeight: FontWeight.w400);
+const TextStyle small3 =
+    TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.w400);
 
 const TextStyle hmehead = TextStyle(
     color: Color(0xff4048AE), fontSize: 17, fontWeight: FontWeight.w400);
@@ -24,3 +26,7 @@ const TextStyle profile = TextStyle(
     color: Color(0xff4048AE), fontSize: 24, fontWeight: FontWeight.w700);
 const TextStyle name = TextStyle(
     color: Color(0xFFFFFFFF), fontSize: 15, fontWeight: FontWeight.w700);
+const TextStyle name2 = TextStyle(
+    color: Color(0xFFFFFFFF), fontSize: 20, fontWeight: FontWeight.w700);
+const TextStyle activity = TextStyle(
+    color: Color(0xFF5E0256), fontSize: 20, fontWeight: FontWeight.w700);

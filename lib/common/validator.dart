@@ -1,6 +1,4 @@
-import 'package:flutter/material.dart';
 import 'dart:core';
-import 'package:flutter/services.dart';
 
 class Validate {
   static String? emailValidator(String value) {
@@ -42,6 +40,54 @@ class Validate {
   static String? NameValidator(String value) {
     if (value.toString() == "") {
       return " User Name is Invalid ";
+    } else {
+      return null;
+    }
+  }
+
+  static String? MatchNameValidator(String value) {
+    if (value.toString() == "") {
+      return " Match name is Null ";
+    } else {
+      return null;
+    }
+  }
+
+  static String? TimeValidator(String value) {
+    if (value.toString() == "") {
+      return " TIme is Null ";
+    } else {
+      return null;
+    }
+  }
+
+  static String? DayValidator(String value) {
+    if (value.toString() == "") {
+      return " Day is Null ";
+    } else {
+      return null;
+    }
+  }
+
+  static String? PlaceValidator(String value) {
+    if (value.toString() == "") {
+      return " Place is Null ";
+    } else {
+      return null;
+    }
+  }
+
+  static String? AmountValidator(String value) {
+    if (value.toString() == "") {
+      return " Amount is Null ";
+    } else {
+      return null;
+    }
+  }
+
+  static String? reasonValidator(String value) {
+    if (value.toString() == "") {
+      return " Reason input is null ";
     } else {
       return null;
     }

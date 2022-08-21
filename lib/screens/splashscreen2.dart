@@ -10,7 +10,7 @@ class SplashScreen2 extends StatefulWidget {
 }
 
 class _SplashScreen2State extends State<SplashScreen2> {
-  final List<PageViewModel> pages = [
+  List<PageViewModel> pages = [
     PageViewModel(
       title: 'BlueYMC',
       body: 'Start Match Our Club',
@@ -74,7 +74,7 @@ class _SplashScreen2State extends State<SplashScreen2> {
                 context, MaterialPageRoute(builder: (context) => LoginPage()));
           },
           onSkip: () {
-            // You can also override onSkip callback
+            pages[2];
           },
           showBackButton: false,
           showSkipButton: true,

@@ -1,6 +1,10 @@
 import 'package:blueymc/common/decoration.dart';
 import 'package:blueymc/common/textstyle.dart';
+import 'package:blueymc/screens/aboutpage.dart';
+import 'package:blueymc/screens/matchaddpage.dart';
 import 'package:blueymc/screens/memberdetails.dart';
+import 'package:blueymc/screens/notificationpage.dart';
+import 'package:blueymc/screens/remainderpage.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -46,45 +50,56 @@ class _HomePageState extends State<HomePage> {
                 ],
               ),
             ),
-            Divider(),
+            const Divider(),
             Container(
               child: Padding(
                 padding: EdgeInsets.only(left: 0.0),
                 child: Column(
-                  children: const [
-                    ListTile(
+                  children: [
+                    const ListTile(
                       title: Text('Profile'),
                       trailing: Icon(Icons.person),
                       // onTap: (){},
                     ),
-                    Divider(),
+                    const Divider(),
                     ListTile(
                       title: Text('Remainder'),
                       trailing: Icon(Icons.list_alt_rounded),
-                      // onTap: (){},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => RemainderPage()),
+                        );
+                      },
                     ),
-                    Divider(),
-                    ListTile(
+                    const Divider(),
+                    const ListTile(
                       title: Text('Settings'),
                       trailing: Icon(Icons.settings),
                       // onTap: (){},
                     ),
-                    Divider(),
+                    const Divider(),
                     ListTile(
                       title: Text('About'),
                       trailing: Icon(Icons.info),
-                      // onTap: (){},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => AboutPage()));
+                      },
                     ),
-                    Divider(
+                    const Divider(
                       color: Colors.black26,
                     ),
-                    ListTile(
+                    const ListTile(
                       title: Text('Invite Friends'),
                       trailing: Icon(Icons.share),
                       // onTap: (){},
                     ),
-                    Divider(),
-                    ListTile(
+                    const Divider(),
+                    const ListTile(
                       title: Text('Logout'),
                       trailing: Icon(Icons.logout),
                       // onTap: (){},
@@ -102,19 +117,24 @@ class _HomePageState extends State<HomePage> {
           'BlueYMC',
           style: appbar,
         ),
-        backgroundColor: Color(0xFF022542),
+        backgroundColor: const Color(0xFF022542),
         actions: <Widget>[
           Padding(
-            padding: EdgeInsets.only(right: 20.0),
+            padding: const EdgeInsets.only(right: 20.0),
             child: GestureDetector(
               onTap: () {},
               child: const Icon(Icons.search),
             ),
           ),
           Padding(
-            padding: EdgeInsets.only(right: 20.0),
+            padding: const EdgeInsets.only(right: 20.0),
             child: GestureDetector(
-              onTap: () {},
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const NotificationPage()));
+              },
               child: const Icon(Icons.notifications),
             ),
           )
@@ -370,7 +390,14 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => MatchAddPage(),
+            ),
+          );
+        },
         // tooltip: 'Increment',
         // icon: new Icon(Icons.add),
         label: const Icon(Icons.add),
@@ -378,10 +405,10 @@ class _HomePageState extends State<HomePage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
       bottomNavigationBar: BottomAppBar(
         clipBehavior: Clip.antiAlias,
-        color: Colors.blue,
+        color: Colors.cyan,
         shape: const CircularNotchedRectangle(),
         child: Material(
-          child: const SizedBox(
+          child: SizedBox(
             width: double.infinity,
             height: 60.0,
           ),

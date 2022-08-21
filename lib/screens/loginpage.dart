@@ -1,6 +1,7 @@
 import 'package:blueymc/common/clippath.dart';
 import 'package:blueymc/common/textstyle.dart';
 import 'package:blueymc/common/validator.dart';
+import 'package:blueymc/screens/homepage.dart';
 import 'package:blueymc/screens/registrationpae.dart';
 import 'package:flutter/material.dart';
 
@@ -102,7 +103,13 @@ class LoginPage extends StatelessWidget {
                         height: 50,
                         width: 270,
                         child: ElevatedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            loginKey.currentState!.validate();
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => HomePage()));
+                          },
                           child: const Text("Login"),
                           style: ButtonStyle(
                             shape: MaterialStateProperty.all<

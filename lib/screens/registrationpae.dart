@@ -5,14 +5,28 @@ import 'package:blueymc/screens/homepage.dart';
 import 'package:blueymc/screens/loginpage.dart';
 import 'package:flutter/material.dart';
 
-class RegistrationPage extends StatelessWidget {
+class RegistrationPage extends StatefulWidget {
   RegistrationPage({Key? key}) : super(key: key);
+
+  @override
+  State<RegistrationPage> createState() => _RegistrationPageState();
+}
+
+class _RegistrationPageState extends State<RegistrationPage> {
   var nameController = TextEditingController();
+
   var emailController = TextEditingController();
+
   var passwordController = TextEditingController();
+
   var confirmController = TextEditingController();
+
   var numberController = TextEditingController();
+
+  var status;
+
   var registerKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -147,6 +161,34 @@ class RegistrationPage extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
+                        child: DropdownButtonFormField<String>(
+                          value: status,
+                          decoration: InputDecoration(
+                            hintText: "Status",
+                            prefixIcon: Icon(Icons.card_membership),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          onChanged: (ctgry) => setState(() => status = ctgry),
+                          validator: (value) =>
+                              value == null ? 'field required' : null,
+                          items: [
+                            'Player',
+                            'Member',
+                          ].map<DropdownMenuItem<String>>((String value) {
+                            return DropdownMenuItem<String>(
+                              value: value,
+                              child: Text(value),
+                            );
+                          }).toList(),
+                        ),
+                      ),
+                      const SizedBox(
+                        height: 5,
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: TextFormField(
                           obscureText: true,
                           keyboardType: TextInputType.number,
@@ -230,6 +272,7 @@ class RegistrationPage extends StatelessWidget {
                           width: 270,
                           child: ElevatedButton(
                             onPressed: () {
+                              registerKey.currentState!.validate();
                               Navigator.push(
                                 context,
                                 MaterialPageRoute(
