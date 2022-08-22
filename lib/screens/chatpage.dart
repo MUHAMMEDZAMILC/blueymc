@@ -1,3 +1,4 @@
+import 'package:blueymc/common/decoration.dart';
 import 'package:blueymc/common/textstyle.dart';
 import 'package:flutter/material.dart';
 
@@ -131,9 +132,12 @@ class _ChatPageState extends State<ChatPage> {
   _sendMessageArea() {
     var messageController = TextEditingController();
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 7.0),
+      padding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 2.0),
       height: 70,
       color: Colors.white,
+      decoration: BoxDecoration(
+        color: Theme.of(context).primaryColor,
+      ),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -141,16 +145,45 @@ class _ChatPageState extends State<ChatPage> {
             child: TextField(
               controller: messageController,
               keyboardType: TextInputType.text,
-              decoration: InputDecoration(
-                hintText: 'Send a message..',
+              decoration: const InputDecoration(
+                // prefixIcon: Icon(Icons.lock),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  borderSide: BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  borderSide: BorderSide(
+                    color: Colors.grey,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(30)),
+                  borderSide: BorderSide(
+                    color: Colors.green,
+                  ),
+                ),
+                hintText: "Send a message",
               ),
             ),
           ),
-          IconButton(
-            onPressed: () {
-              return _charBubble('hi', true);
-            },
-            icon: Icon(Icons.send),
+          Container(
+            width: 70,
+            height: 70,
+            decoration: containerdec5,
+            child: IconButton(
+                onPressed: () {
+                  return _charBubble('hi', true);
+                },
+                icon: Icon(
+                  Icons.send,
+                  color: Colors.blue,
+                  size: 40,
+                ),
+                alignment: Alignment.center,
+                disabledColor: Colors.black12),
           ),
         ],
       ),
@@ -204,8 +237,15 @@ class _ChatPageState extends State<ChatPage> {
                 ],
               ),
             ),
-            Container(
-              child: Text('data'),
+            Expanded(
+              child: ListView.builder(
+                itemCount: 10,
+                itemBuilder: (BuildContext context, int index) {
+                  if (true) {
+                    return _charBubble('', true);
+                  }
+                },
+              ),
             ),
             _sendMessageArea(),
           ],
