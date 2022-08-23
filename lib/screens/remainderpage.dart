@@ -1,5 +1,6 @@
 import 'package:blueymc/common/decoration.dart';
 import 'package:blueymc/common/textstyle.dart';
+import 'package:blueymc/screens/remaindermatch.dart';
 import 'package:flutter/material.dart';
 
 class RemainderPage extends StatelessWidget {
@@ -22,7 +23,7 @@ class RemainderPage extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0),
                 child: Container(
                   height: MediaQuery.of(context).size.height,
                   width: MediaQuery.of(context).size.width,
@@ -34,24 +35,32 @@ class RemainderPage extends StatelessWidget {
                           width: double.infinity,
                           height: MediaQuery.of(context).size.height * 0.12,
                           decoration: remainderCon,
-                          child: const Align(
+                          child: Align(
                             alignment: AlignmentDirectional.center,
                             child: ListTile(
-                              title: Text(
+                              title: const Text(
                                 'Match Name',
                                 style: name,
                               ),
-                              subtitle: Text('Sunday', style: name),
-                              leading: Icon(
+                              subtitle: const Text('Sunday', style: name),
+                              leading: const Icon(
                                 Icons.sports_soccer,
                                 size: 50,
                               ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => RemainderMatch(),
+                                  ),
+                                );
+                              },
                             ),
                           ),
                         );
                       },
-                      separatorBuilder: (BuildContetx, int index) {
-                        return SizedBox(height: 10);
+                      separatorBuilder: (BuildContext context, int index) {
+                        return const SizedBox(height: 10);
                       }),
                 ),
               )

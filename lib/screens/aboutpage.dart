@@ -38,8 +38,8 @@ class AboutPage extends StatelessWidget {
 
               Container(
                 width: 300,
-                height: 300,
-                //color: Colors.lightBlue,
+                height: 350,
+                // color: Colors.lightBlue,
                 child: Form(
                   key: feedbackkey,
                   child: Column(
@@ -50,12 +50,12 @@ class AboutPage extends StatelessWidget {
                         //   return Validate.FeedbackValidator(value!);
                         // },
                         controller: feedbackController,
-                        maxLines: 9,
+                        maxLines: 5,
                         maxLength: 200,
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(
                               borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
+                                  BorderRadius.all(Radius.circular(0)),
                               borderSide: BorderSide(
                                 color: Colors.grey,
                               ),
@@ -63,18 +63,32 @@ class AboutPage extends StatelessWidget {
                             hintText: "FeedBack"),
                       ),
                       // SizedBox(height: 48,),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: Text("Submit"),
-                        style: ButtonStyle(
-                          shape:
-                              MaterialStateProperty.all<RoundedRectangleBorder>(
-                            RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10),
+                      Padding(
+                        padding: const EdgeInsets.only(bottom: 20.0),
+                        child: Container(
+                          height: 50,
+                          width: 270,
+                          child: ElevatedButton(
+                            onPressed: () {
+                              feedbackkey.currentState!.validate();
+                              // Navigator.push(
+                              //     context,
+                              //     MaterialPageRoute(
+                              //         builder: (context) => HomePage()));
+                            },
+                            child: const Text("Submit"),
+                            style: ButtonStyle(
+                              shape: MaterialStateProperty.all<
+                                  RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(30),
+                                ),
+                              ),
+                              backgroundColor: MaterialStateProperty.all(
+                                const Color(0xFF022542),
+                              ),
                             ),
                           ),
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.lightBlueAccent),
                         ),
                       ),
                     ],

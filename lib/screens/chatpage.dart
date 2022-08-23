@@ -1,10 +1,15 @@
 import 'package:blueymc/common/decoration.dart';
 import 'package:blueymc/common/textstyle.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+bool currentUser = true;
+dynamic senderId = 1;
+dynamic isMe = 2;
 
 // ignore: must_be_immutable
 class ChatPage extends StatefulWidget {
-  ChatPage({Key? key}) : super(key: key);
+  const ChatPage({Key? key}) : super(key: key);
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -13,6 +18,7 @@ class ChatPage extends StatefulWidget {
 class _ChatPageState extends State<ChatPage> {
   _charBubble(String message, bool isMe) {
     if (isMe) {
+      _messagess = _messagess + 1;
       return Column(
         children: [
           Container(
@@ -34,8 +40,8 @@ class _ChatPageState extends State<ChatPage> {
                   ),
                 ],
               ),
-              child: const Text(
-                'Hi , how are you ? ',
+              child: Text(
+                messageController.text,
                 style: TextStyle(
                   color: Colors.white,
                 ),
@@ -129,12 +135,19 @@ class _ChatPageState extends State<ChatPage> {
     }
   }
 
+  // List<dynamic> messages = const [
+  //   Text('Hi how are you'),
+  //   Text('I am fine '),
+  //   Text('Nice to meet you'),
+  //   Text('forever'),
+  //   Text('Hi how are you1'),
+  // ];
+  int _messagess = 0;
+  var messageController = TextEditingController();
   _sendMessageArea() {
-    var messageController = TextEditingController();
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 2.0),
       height: 70,
-      color: Colors.white,
       decoration: BoxDecoration(
         color: Theme.of(context).primaryColor,
       ),
@@ -145,7 +158,12 @@ class _ChatPageState extends State<ChatPage> {
             child: TextField(
               controller: messageController,
               keyboardType: TextInputType.text,
+              style: TextStyle(
+                color: Colors.white,
+              ),
               decoration: const InputDecoration(
+                fillColor: Colors.white,
+                hintStyle: TextStyle(color: Colors.white),
                 // prefixIcon: Icon(Icons.lock),
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.all(Radius.circular(30)),
@@ -169,21 +187,24 @@ class _ChatPageState extends State<ChatPage> {
               ),
             ),
           ),
+          SizedBox(width: 3),
           Container(
-            width: 70,
-            height: 70,
-            decoration: containerdec5,
-            child: IconButton(
-                onPressed: () {
-                  return _charBubble('hi', true);
-                },
-                icon: Icon(
-                  Icons.send,
-                  color: Colors.blue,
-                  size: 40,
-                ),
-                alignment: Alignment.center,
-                disabledColor: Colors.black12),
+            width: 50,
+            height: 50,
+            decoration: containerdec53,
+            child: Center(
+              child: IconButton(
+                  onPressed: () {
+                    print(messageController.text);
+                  },
+                  icon: Icon(
+                    Icons.send_sharp,
+                    color: Color.fromARGB(255, 240, 240, 240),
+                    size: 30,
+                  ),
+                  alignment: Alignment.center,
+                  disabledColor: Colors.black12),
+            ),
           ),
         ],
       ),
@@ -222,7 +243,7 @@ class _ChatPageState extends State<ChatPage> {
                   ),
                   ElevatedButton(
                     onPressed: () {},
-                    child: Text(
+                    child: const Text(
                       'View Profile',
                       style: login,
                     ),
@@ -231,7 +252,7 @@ class _ChatPageState extends State<ChatPage> {
                         Colors.white,
                       ),
                       side: MaterialStateProperty.all(
-                          BorderSide(width: 1.0, color: Colors.black)),
+                          const BorderSide(width: 1.0, color: Colors.black)),
                     ),
                   ),
                 ],
@@ -239,11 +260,12 @@ class _ChatPageState extends State<ChatPage> {
             ),
             Expanded(
               child: ListView.builder(
-                itemCount: 10,
-                itemBuilder: (BuildContext context, int index) {
-                  if (true) {
-                    return _charBubble('', true);
-                  }
+                itemCount: _messagess,
+                itemBuilder: (
+                  BuildContext context,
+                  int index,
+                ) {
+                  return _charBubble(messageController.text, true);
                 },
               ),
             ),

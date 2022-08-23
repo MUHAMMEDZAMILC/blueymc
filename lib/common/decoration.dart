@@ -35,6 +35,11 @@ final BoxDecoration containerdec52 = BoxDecoration(
   borderRadius: BorderRadius.circular(40),
   //color: Color(0xff246368)
 );
+final BoxDecoration containerdec53 = BoxDecoration(
+  color: Color(0xFF03A5D6),
+  borderRadius: BorderRadius.circular(40),
+  //color: Color(0xff246368)
+);
 final BoxDecoration containerheadmatch = BoxDecoration(
   color: Color(0xFF810242),
   borderRadius: BorderRadius.circular(40),

@@ -1,10 +1,13 @@
 import 'package:blueymc/common/decoration.dart';
 import 'package:blueymc/common/textstyle.dart';
 import 'package:blueymc/screens/aboutpage.dart';
+import 'package:blueymc/screens/loginpage.dart';
 import 'package:blueymc/screens/matchaddpage.dart';
 import 'package:blueymc/screens/memberdetails.dart';
 import 'package:blueymc/screens/notificationpage.dart';
+import 'package:blueymc/screens/profilepage.dart';
 import 'package:blueymc/screens/remainderpage.dart';
+import 'package:blueymc/screens/settingspage.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -56,10 +59,17 @@ class _HomePageState extends State<HomePage> {
                 padding: EdgeInsets.only(left: 0.0),
                 child: Column(
                   children: [
-                    const ListTile(
+                    ListTile(
                       title: Text('Profile'),
                       trailing: Icon(Icons.person),
-                      // onTap: (){},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ProfilePage(),
+                          ),
+                        );
+                      },
                     ),
                     const Divider(),
                     ListTile(
@@ -74,10 +84,16 @@ class _HomePageState extends State<HomePage> {
                       },
                     ),
                     const Divider(),
-                    const ListTile(
+                    ListTile(
                       title: Text('Settings'),
                       trailing: Icon(Icons.settings),
-                      // onTap: (){},
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SettingsPage()),
+                        );
+                      },
                     ),
                     const Divider(),
                     ListTile(
@@ -99,10 +115,15 @@ class _HomePageState extends State<HomePage> {
                       // onTap: (){},
                     ),
                     const Divider(),
-                    const ListTile(
+                    ListTile(
                       title: Text('Logout'),
                       trailing: Icon(Icons.logout),
-                      // onTap: (){},
+                      onTap: () {
+                        Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => LoginPage()));
+                      },
                     ),
                   ],
                 ),
