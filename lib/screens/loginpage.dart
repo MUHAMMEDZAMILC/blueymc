@@ -5,11 +5,29 @@ import 'package:blueymc/screens/homepage.dart';
 import 'package:blueymc/screens/registrationpae.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
-  LoginPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
+
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
   var loginKey = GlobalKey<FormState>();
+
   var emailController = TextEditingController();
+
   var passwordController = TextEditingController();
+  late bool passwordVisibility;
+  late bool passwordLoginVisibility;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    passwordVisibility = false;
+    passwordLoginVisibility = false;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,26 +55,28 @@ class LoginPage extends StatelessWidget {
                         },
                         controller: emailController,
                         decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.email),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            borderSide: BorderSide(
-                              color: Colors.grey,
+                            suffixIcon: Icon(Icons.email),
+                            border: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                              ),
                             ),
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(20)),
-                            borderSide: BorderSide(
-                              color: Colors.grey,
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                              ),
                             ),
-                          ),
-                          focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Colors.green,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Colors.green,
+                              ),
                             ),
-                          ),
-                          hintText: "Email",
-                        ),
+                            hintText: "Enter your email id:",
+                            labelText: 'Email:'),
                       ),
                     ),
                     const SizedBox(
@@ -65,33 +85,45 @@ class LoginPage extends StatelessWidget {
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 30.0),
                       child: TextFormField(
+                        obscureText: !passwordVisibility,
                         keyboardType: TextInputType.number,
                         validator: (value) {
                           return Validate.AdpwdValidator(value!);
                         },
                         controller: passwordController,
-                        decoration: const InputDecoration(
-                          prefixIcon: Icon(Icons.lock),
-                          border: OutlineInputBorder(
+                        decoration: InputDecoration(
+                          suffixIcon: InkWell(
+                            onTap: () => setState(
+                              () => passwordVisibility = !passwordVisibility,
+                            ),
+                            child: Icon(
+                              passwordVisibility
+                                  ? Icons.visibility_outlined
+                                  : Icons.visibility_off_outlined,
+                              color: Color(0xFF95A1AC),
+                              size: 20,
+                            ),
+                          ),
+                          border: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                             borderSide: BorderSide(
                               color: Colors.grey,
                             ),
                           ),
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: const OutlineInputBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20)),
                             borderSide: BorderSide(
                               color: Colors.grey,
                             ),
                           ),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(
                               color: Colors.green,
                             ),
                           ),
-                          hintText: "Password",
+                          hintText: "Enter your password",
+                          labelText: 'Password',
                         ),
-                        obscureText: true,
                       ),
                     ),
                     const SizedBox(

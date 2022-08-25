@@ -32,12 +32,6 @@ class EditProfilePage extends StatelessWidget {
                     'MasterZing',
                     style: appbar,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 140.0),
-                    child: GestureDetector(
-                        onTap: () {},
-                        child: Icon(Icons.edit, color: Colors.white)),
-                  ),
                 ],
               ),
             ),
@@ -280,7 +274,7 @@ class EditProfilePage extends StatelessWidget {
                                 ),
                               ),
                               backgroundColor: MaterialStateProperty.all(
-                                Color(0xFFFD7267),
+                                Color(0xFF022542),
                               ),
                             ),
                           ),

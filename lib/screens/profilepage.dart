@@ -72,7 +72,7 @@ class ProfilePage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: ListTile(
-                  tileColor: Color(0xFFFD7267),
+                  tileColor: Color(0xFF022542),
                   leading: Icon(
                     Icons.person,
                     color: Colors.white,
@@ -83,14 +83,14 @@ class ProfilePage extends StatelessWidget {
                   ),
                   subtitle: Text(
                     'MasterZing',
-                    style: small3,
+                    style: tilesub,
                   ),
                 ),
               ),
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: ListTile(
-                  tileColor: Color(0xFFFD7267),
+                  tileColor: Color(0xFF022542),
                   leading: Icon(
                     Icons.mail,
                     color: Colors.white,
@@ -101,14 +101,14 @@ class ProfilePage extends StatelessWidget {
                   ),
                   subtitle: Text(
                     'mzofficial049@gmail.com',
-                    style: small3,
+                    style: tilesub,
                   ),
                 ),
               ),
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: ListTile(
-                  tileColor: Color(0xFFFD7267),
+                  tileColor: Color(0xFF022542),
                   leading: Icon(
                     Icons.phone,
                     color: Colors.white,
@@ -119,14 +119,14 @@ class ProfilePage extends StatelessWidget {
                   ),
                   subtitle: Text(
                     '808685133',
-                    style: small3,
+                    style: tilesub,
                   ),
                 ),
               ),
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: ListTile(
-                  tileColor: Color(0xFFFD7267),
+                  tileColor: Color(0xFF022542),
                   leading: Icon(
                     Icons.card_membership_sharp,
                     color: Colors.white,
@@ -137,7 +137,7 @@ class ProfilePage extends StatelessWidget {
                   ),
                   subtitle: Text(
                     'Member',
-                    style: small3,
+                    style: tilesub,
                   ),
                 ),
               ),

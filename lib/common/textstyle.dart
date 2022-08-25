@@ -4,6 +4,11 @@ const TextStyle mainhead =
     TextStyle(color: Colors.white, fontSize: 28, fontWeight: FontWeight.w700);
 const TextStyle sign = TextStyle(
     color: Colors.lightBlueAccent, fontSize: 12, fontWeight: FontWeight.w500);
+const TextStyle tilesub = TextStyle(
+    color: Color(0xFFFFFFFF),
+    fontSize: 18,
+    fontWeight: FontWeight.w500,
+    fontFamily: 'Roboto');
 const TextStyle login =
     TextStyle(color: Colors.black, fontSize: 12, fontWeight: FontWeight.w500);
 const TextStyle home = TextStyle(

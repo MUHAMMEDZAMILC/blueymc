@@ -15,18 +15,24 @@ class RegistrationPage extends StatefulWidget {
 
 class _RegistrationPageState extends State<RegistrationPage> {
   var nameController = TextEditingController();
-
   var emailController = TextEditingController();
-
   var passwordController = TextEditingController();
-
   var confirmController = TextEditingController();
-
   var numberController = TextEditingController();
-
   var status;
 
+  late bool passwordDVisibility;
+  late bool passwordCVisibility;
   var registerKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+
+    passwordDVisibility = false;
+    passwordCVisibility = false;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -55,30 +61,30 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           },
                           controller: nameController,
                           decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.person),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
+                              suffixIcon: Icon(Icons.person),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                borderSide: BorderSide(
+                                  color: Colors.grey,
+                                ),
                               ),
-                              borderSide: BorderSide(
-                                color: Colors.grey,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                borderSide: BorderSide(
+                                  color: Colors.grey,
+                                ),
                               ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide(
-                                color: Colors.grey,
+                              focusedBorder: OutlineInputBorder(
+                                //borderRadius: BorderRadius.all(Radius.circular(20)),
+                                borderSide: BorderSide(
+                                  color: Colors.green,
+                                ),
                               ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              //borderRadius: BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide(
-                                color: Colors.green,
-                              ),
-                            ),
-                            hintText: "User Name",
-                          ),
+                              hintText: "Enter your username:*",
+                              labelText: 'Username'),
                         ),
                       ),
                       const SizedBox(
@@ -87,36 +93,37 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: TextFormField(
+                          obscureText: false,
                           keyboardType: TextInputType.number,
                           validator: (value) {
                             return Validate.numberValidator(value!);
                           },
                           controller: numberController,
                           decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.phone),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
+                              suffixIcon: Icon(Icons.phone),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                borderSide: BorderSide(
+                                  color: Colors.grey,
+                                ),
                               ),
-                              borderSide: BorderSide(
-                                color: Colors.grey,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                borderSide: BorderSide(
+                                  color: Colors.grey,
+                                ),
                               ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide(
-                                color: Colors.grey,
+                              focusedBorder: OutlineInputBorder(
+                                // borderRadius: BorderRadius.all(Radius.circular(20)),
+                                borderSide: BorderSide(
+                                  color: Colors.green,
+                                ),
                               ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              // borderRadius: BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide(
-                                color: Colors.green,
-                              ),
-                            ),
-                            hintText: "Phone Number ",
-                          ),
+                              labelText: "Phone Number ",
+                              hintText: 'Enter your phone number:*'),
                         ),
                       ),
                       const SizedBox(
@@ -131,30 +138,30 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           },
                           controller: emailController,
                           decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.email_sharp),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
+                              suffixIcon: Icon(Icons.email_sharp),
+                              border: OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                borderSide: BorderSide(
+                                  color: Colors.grey,
+                                ),
                               ),
-                              borderSide: BorderSide(
-                                color: Colors.grey,
+                              enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                borderSide: BorderSide(
+                                  color: Colors.grey,
+                                ),
                               ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide(
-                                color: Colors.grey,
+                              focusedBorder: OutlineInputBorder(
+                                // borderRadius: BorderRadius.all(Radius.circular(20)),
+                                borderSide: BorderSide(
+                                  color: Colors.green,
+                                ),
                               ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              // borderRadius: BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide(
-                                color: Colors.green,
-                              ),
-                            ),
-                            hintText: "E-Mail Id",
-                          ),
+                              labelText: "E-Mail Id",
+                              hintText: 'Enter your email id:*'),
                         ),
                       ),
                       const SizedBox(
@@ -165,8 +172,9 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         child: DropdownButtonFormField<String>(
                           value: status,
                           decoration: InputDecoration(
-                            hintText: "Status",
-                            prefixIcon: Icon(Icons.card_membership),
+                            labelText: "Status",
+                            hintText: 'Select your status:*',
+                            suffixIcon: Icon(Icons.card_membership),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
@@ -191,15 +199,26 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: TextFormField(
-                          obscureText: true,
+                          obscureText: !passwordDVisibility,
                           keyboardType: TextInputType.number,
                           validator: (value) {
                             return Validate.pwdValidator(value!);
                           },
                           controller: passwordController,
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.password_sharp),
-                            border: OutlineInputBorder(
+                          decoration: InputDecoration(
+                            suffixIcon: InkWell(
+                              onTap: () => setState(
+                                () =>
+                                    passwordDVisibility = !passwordDVisibility,
+                              ),
+                              child: Icon(
+                                passwordDVisibility
+                                    ? Icons.visibility_outlined
+                                    : Icons.visibility_off_outlined,
+                                size: 20,
+                              ),
+                            ),
+                            border: const OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(20),
                               ),
@@ -207,20 +226,21 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 color: Colors.grey,
                               ),
                             ),
-                            enabledBorder: OutlineInputBorder(
+                            enabledBorder: const OutlineInputBorder(
                               borderRadius:
                                   BorderRadius.all(Radius.circular(20)),
                               borderSide: BorderSide(
                                 color: Colors.grey,
                               ),
                             ),
-                            focusedBorder: OutlineInputBorder(
+                            focusedBorder: const OutlineInputBorder(
                               //borderRadius: BorderRadius.all(Radius.circular(20)),
                               borderSide: BorderSide(
                                 color: Colors.green,
                               ),
                             ),
-                            hintText: "Password",
+                            labelText: "Password",
+                            hintText: "Enter your password:*",
                           ),
                         ),
                       ),
@@ -230,37 +250,48 @@ class _RegistrationPageState extends State<RegistrationPage> {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: TextFormField(
-                          obscureText: true,
+                          obscureText: !passwordCVisibility,
                           keyboardType: TextInputType.number,
                           validator: (value) {
                             return Validate.pwdValidator(value!);
                           },
                           controller: confirmController,
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.password_sharp),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
+                          decoration: InputDecoration(
+                              suffixIcon: InkWell(
+                                onTap: () => setState(
+                                  () => passwordDVisibility =
+                                      !passwordDVisibility,
+                                ),
+                                child: Icon(
+                                  passwordDVisibility
+                                      ? Icons.visibility_outlined
+                                      : Icons.visibility_off_outlined,
+                                  size: 20,
+                                ),
                               ),
-                              borderSide: BorderSide(
-                                color: Colors.grey,
+                              border: const OutlineInputBorder(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(20),
+                                ),
+                                borderSide: BorderSide(
+                                  color: Colors.grey,
+                                ),
                               ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide(
-                                color: Colors.grey,
+                              enabledBorder: const OutlineInputBorder(
+                                borderRadius:
+                                    BorderRadius.all(Radius.circular(20)),
+                                borderSide: BorderSide(
+                                  color: Color.fromARGB(255, 82, 77, 77),
+                                ),
                               ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              //borderRadius: BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide(
-                                color: Colors.green,
+                              focusedBorder: const OutlineInputBorder(
+                                //borderRadius: BorderRadius.all(Radius.circular(20)),
+                                borderSide: BorderSide(
+                                  color: Colors.green,
+                                ),
                               ),
-                            ),
-                            hintText: "Comfirm Password",
-                          ),
+                              labelText: "Comfirm Password",
+                              hintText: 'Enter confirm password:*'),
                         ),
                       ),
                       const SizedBox(

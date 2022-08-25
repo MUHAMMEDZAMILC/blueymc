@@ -178,10 +178,10 @@ class _MemberDetailsPageState extends State<MemberDetailsPage> {
               Row(
                 children: [
                   Padding(
-                    padding: const EdgeInsets.all(18.0),
+                    padding: const EdgeInsets.all(4.0),
                     child: Container(
-                      width: MediaQuery.of(context).size.width * 0.90,
-                      height: MediaQuery.of(context).size.height * 0.32,
+                      width: MediaQuery.of(context).size.width * 0.96,
+                      height: MediaQuery.of(context).size.height * 0.52,
                       //color: Colors.lightBlue,
                       child: Column(
                         children: [
@@ -190,17 +190,185 @@ class _MemberDetailsPageState extends State<MemberDetailsPage> {
                                 scrollDirection: Axis.vertical,
                                 itemCount: 5,
                                 itemBuilder: (BuildContext context, int index) {
-                                  return const Card(
-                                    elevation: 10,
-                                    color: Colors.orangeAccent,
-                                    child: ListTile(
-                                      leading: Icon(
-                                        Icons.sports_baseball,
-                                        size: 50,
-                                        color: Colors.grey,
+                                  return Padding(
+                                    padding: EdgeInsetsDirectional.fromSTEB(
+                                        10, 10, 10, 10),
+                                    child: Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.98,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 4,
+                                            color: Color(0x33000000),
+                                            offset: Offset(0, 2),
+                                          )
+                                        ],
+                                        borderRadius: BorderRadius.circular(16),
                                       ),
-                                      title: Text('Mz'),
-                                      subtitle: Text('marks'),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            10, 10, 10, 0),
+                                        child: SingleChildScrollView(
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            children: [
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(16, 8, 16, 0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment
+                                                          .spaceBetween,
+                                                  children: [
+                                                    Column(
+                                                      mainAxisSize:
+                                                          MainAxisSize.max,
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisSize:
+                                                              MainAxisSize.max,
+                                                          children: const [
+                                                            // FaIcon(
+                                                            //   FontAwesomeIcons.calendarAlt,
+                                                            //   color: Colors.black,
+                                                            //   size: 20,
+                                                            // ),
+                                                            Icon(Icons
+                                                                .calendar_today),
+                                                            SizedBox(
+                                                              width: 10,
+                                                            ),
+                                                            Text(
+                                                              // data[index]['time'].toDate().toString().substring(0,16),
+                                                              '23-09-2022',
+                                                              // style: FlutterFlowTheme.subtitle1.override
+                                                              style: TextStyle(
+                                                                fontFamily:
+                                                                    'Lexend Deca',
+                                                                color: Color(
+                                                                    0xFF151B1E),
+                                                                fontSize: 15,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .normal,
+                                                              ),
+                                                            ),
+                                                          ],
+                                                        ),
+                                                        const Padding(
+                                                          padding:
+                                                              EdgeInsets.all(
+                                                                  8.0),
+                                                          child: Text(
+                                                            // data[index]['uname'],
+                                                            'Match Name',
+                                                            // style:
+                                                            style: TextStyle(
+                                                              fontFamily:
+                                                                  'Lexend Deca',
+                                                              color: Color(
+                                                                  0xFF151B1E),
+                                                              fontSize: 18,
+                                                              fontWeight:
+                                                                  FontWeight
+                                                                      .w500,
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      ],
+                                                    ),
+                                                    Card(
+                                                      clipBehavior: Clip
+                                                          .antiAliasWithSaveLayer,
+                                                      color: Color(0xFFDBE2E7),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                        borderRadius:
+                                                            BorderRadius
+                                                                .circular(40),
+                                                      ),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0, 0, 0, 0),
+                                                        // child: AuthUserStreamWidget(
+                                                        child: Container(
+                                                          width: 50,
+                                                          height: 50,
+                                                          clipBehavior:
+                                                              Clip.antiAlias,
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            shape:
+                                                                BoxShape.circle,
+                                                          ),
+                                                          //   child: CachedNetworkImage(
+                                                          //     imageUrl: data[index]['photoUrl'],
+                                                          // ),
+                                                          child: Image.asset(
+                                                            'assets/images/avatar.png',
+                                                            fit: BoxFit.cover,
+                                                            scale: 1,
+                                                          ),
+                                                          // ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(10, 0, 0, 0),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      // 'Location : ${data[index]['location']}',
+                                                      'Location :Zyco',
+                                                      // style: FlutterFlowTheme.bodyText1
+                                                      // .override(
+                                                      style: TextStyle(
+                                                        fontFamily: 'Poppins',
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(10, 10, 10, 10),
+                                                child: Row(
+                                                  mainAxisSize:
+                                                      MainAxisSize.max,
+                                                  children: [
+                                                    Text(
+                                                      // 'Location : ${data[index]['location']}',
+                                                      'Marks: 10:9',
+                                                      // style: FlutterFlowTheme.bodyText1
+                                                      // .override(
+                                                      style: TextStyle(
+                                                        fontFamily: 'Poppins',
+                                                        color: Colors.black,
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ),
                                   );
                                 }),

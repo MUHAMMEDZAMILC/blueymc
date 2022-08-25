@@ -18,7 +18,6 @@ class RemainderMatch extends StatelessWidget {
         body: Container(
           width: double.infinity,
           height: double.infinity,
-          color: Colors.amber,
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
@@ -143,11 +142,12 @@ class RemainderMatch extends StatelessWidget {
                                     decoration: const InputDecoration(
                                       border: OutlineInputBorder(
                                         borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
+                                            Radius.circular(0.0)),
                                         borderSide: BorderSide(
                                           color: Colors.grey,
                                         ),
                                       ),
+                                      labelText: "Team 1",
                                       hintText: "Marks",
                                     ),
                                   ),
@@ -173,15 +173,15 @@ class RemainderMatch extends StatelessWidget {
                                     // },
                                     // controller: etimeController,
                                     decoration: const InputDecoration(
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.all(
-                                            Radius.circular(20)),
-                                        borderSide: BorderSide(
-                                          color: Colors.grey,
+                                        border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.all(
+                                              Radius.circular(0.0)),
+                                          borderSide: BorderSide(
+                                            color: Colors.grey,
+                                          ),
                                         ),
-                                      ),
-                                      hintText: "Marks",
-                                    ),
+                                        labelText: "Team 2",
+                                        hintText: 'Marks'),
                                   ),
                                 ),
                               ),

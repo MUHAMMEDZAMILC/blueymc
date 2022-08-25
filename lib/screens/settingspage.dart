@@ -43,7 +43,10 @@ class SettingsPage extends StatelessWidget {
                   );
                 },
               ),
-              const Divider(),
+              const Divider(
+                height: 1,
+                color: Colors.white,
+              ),
               ListTile(
                 leading: const Icon(
                   Icons.format_color_fill,
