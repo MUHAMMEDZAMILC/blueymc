@@ -15,49 +15,59 @@ class _SplashScreen2State extends State<SplashScreen2> {
       title: 'BlueYMC',
       body: 'Start Match Our Club',
       image: Center(
-        child: Image.asset('assets/images/logo.png'),
+        child: Image.asset(
+          'assets/images/logo.png',
+          // color: Colors.white,
+        ),
       ),
       decoration: const PageDecoration(
         titleTextStyle: TextStyle(
           fontSize: 25.0,
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+          // color: Colors.black,
         ),
         bodyTextStyle: TextStyle(
-          color: Colors.black,
-        ),
+            // color: Colors.black,
+            ),
       ),
     ),
     PageViewModel(
       title: 'BlueYMC',
       body: 'A little progress each day adds up to big results',
       image: Center(
-        child: Image.asset('assets/images/logo.png'),
+        child: Image.asset(
+          'assets/images/logo.png',
+          // color: Colors.white,
+        ),
       ),
       decoration: const PageDecoration(
         titleTextStyle: TextStyle(
           fontSize: 25.0,
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+          // color: Colors.black,
         ),
         bodyTextStyle: TextStyle(
-          color: Colors.black,
-        ),
+            // color: Colors.black,
+            ),
       ),
     ),
     PageViewModel(
       title: 'BlueYMC',
       body: 'MAtch details',
-      image: Center(child: Image.asset('assets/images/logo.png')),
+      image: Center(
+          child: Image.asset(
+        'assets/images/logo.png',
+        // color: Colors.white,
+      )),
       decoration: const PageDecoration(
         titleTextStyle: TextStyle(
           fontSize: 25.0,
           fontWeight: FontWeight.bold,
-          color: Colors.black,
+          // color: Colors.black,
         ),
         bodyTextStyle: TextStyle(
-          color: Colors.black,
-        ),
+            // color: Colors.black,
+            ),
       ),
     ),
   ];
@@ -65,7 +75,11 @@ class _SplashScreen2State extends State<SplashScreen2> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+        ),
         padding: const EdgeInsets.only(top: 100.0),
         child: IntroductionScreen(
           pages: pages,

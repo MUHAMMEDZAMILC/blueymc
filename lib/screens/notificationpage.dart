@@ -8,12 +8,13 @@ class NotificationPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: Text(
           'MZ',
           style: appbar,
         ),
-        backgroundColor: Color(0xFF022542),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: Container(
         width: double.infinity,

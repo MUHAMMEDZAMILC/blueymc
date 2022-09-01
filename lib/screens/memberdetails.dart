@@ -1,6 +1,6 @@
 import 'package:blueymc/common/decoration.dart';
 import 'package:blueymc/common/textstyle.dart';
-import 'package:blueymc/screens/chatingpageN.dart';
+import 'package:blueymc/screens/chat/chatingpageN.dart';
 import 'package:blueymc/screens/chatpage.dart';
 import 'package:flutter/material.dart';
 
@@ -15,8 +15,9 @@ class _MemberDetailsPageState extends State<MemberDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF022542),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         title: const Text(
           'MZ',
           style: appbar,

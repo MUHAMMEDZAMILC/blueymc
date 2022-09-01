@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.blueymc">
+    package="com.mz.Blueymc">
    <application
-        android:label="blueymc"
+        android:label="Blueymc"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

@@ -8,6 +8,9 @@ import 'package:blueymc/screens/notificationpage.dart';
 import 'package:blueymc/screens/profilepage.dart';
 import 'package:blueymc/screens/remainderpage.dart';
 import 'package:blueymc/screens/settingspage.dart';
+import 'package:blueymc/screens/viewallmembers.dart';
+import 'package:blueymc/screens/viewallplayers.dart';
+import 'package:blueymc/theme/themedata.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -21,18 +24,22 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       drawer: Drawer(
+        // backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         child: ListView(
           padding: EdgeInsets.zero,
           children: [
             Container(
               width: double.infinity,
-              height: 200.0,
+              height: 250.0,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
+                  const SizedBox(
+                    height: 50,
+                  ),
                   Container(
                     decoration: const BoxDecoration(
                       borderRadius: BorderRadius.all(
@@ -46,12 +53,24 @@ class _HomePageState extends State<HomePage> {
                       scale: 1,
                     ),
                   ),
-                  const Text(
-                    'MZ',
-                    style: profile,
-                  )
+                  const Text('MZ',
+                      style: TextStyle(
+                          fontFamily: 'Josefin',
+                          fontSize: 25,
+                          fontWeight: FontWeight.w600)),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  const Text('8086851333',
+                      style: TextStyle(
+                          fontFamily: 'Josefin',
+                          fontSize: 20,
+                          fontWeight: FontWeight.w600))
                 ],
               ),
+            ),
+            const SizedBox(
+              height: 50,
             ),
             const Divider(),
             Container(
@@ -138,7 +157,7 @@ class _HomePageState extends State<HomePage> {
           'BlueYMC',
           style: appbar,
         ),
-        backgroundColor: const Color(0xFF022542),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         actions: <Widget>[
           Padding(
             padding: const EdgeInsets.only(right: 20.0),
@@ -193,7 +212,12 @@ class _HomePageState extends State<HomePage> {
                       style: hmehead,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ViewAllMembers()));
+                      },
                       child: const Text(
                         "View All ",
                         style: hmehead,
@@ -234,30 +258,28 @@ class _HomePageState extends State<HomePage> {
                                 decoration: containerdec2,
                                 height: 140,
                                 width: 150,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      Image.asset(
+                                        'assets/images/avatar.png',
+                                        scale: 3,
+                                        alignment: Alignment.topCenter,
+                                      ),
+                                      Text(
+                                        'MZ',
+                                        style: name,
+                                      ),
+                                      Text(
+                                        '★★★★★',
+                                        style: name,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
-                            Positioned(
-                              top: 10,
-                              left: 40,
-                              child: Image.asset(
-                                'assets/images/avatar.png',
-                                scale: 3,
-                              ),
-                            ),
-                            const Positioned(
-                                top: 90,
-                                left: 65,
-                                child: Text(
-                                  'MZ',
-                                  style: name,
-                                )),
-                            const Positioned(
-                                top: 110,
-                                left: 42,
-                                child: Text(
-                                  '★★★★★',
-                                  style: name,
-                                )),
                             Positioned(
                               top: 150,
                               left: 42,
@@ -305,7 +327,12 @@ class _HomePageState extends State<HomePage> {
                       style: hmehead,
                     ),
                     GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => ViewAllPlayers()));
+                      },
                       child: const Text(
                         "View All ",
                         style: hmehead,
@@ -346,30 +373,28 @@ class _HomePageState extends State<HomePage> {
                                 decoration: containerdec2,
                                 height: 140,
                                 width: 150,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Column(
+                                    children: [
+                                      Image.asset(
+                                        'assets/images/avatar.png',
+                                        scale: 3,
+                                        alignment: Alignment.topCenter,
+                                      ),
+                                      Text(
+                                        'MZ',
+                                        style: name,
+                                      ),
+                                      Text(
+                                        '★★★★★',
+                                        style: name,
+                                      ),
+                                    ],
+                                  ),
+                                ),
                               ),
                             ),
-                            Positioned(
-                              top: 10,
-                              left: 40,
-                              child: Image.asset(
-                                'assets/images/avatar.png',
-                                scale: 3,
-                              ),
-                            ),
-                            const Positioned(
-                                top: 90,
-                                left: 65,
-                                child: Text(
-                                  'MZ',
-                                  style: name,
-                                )),
-                            const Positioned(
-                                top: 110,
-                                left: 42,
-                                child: Text(
-                                  '★★★★★',
-                                  style: name,
-                                )),
                             Positioned(
                               top: 150,
                               left: 42,
@@ -382,7 +407,7 @@ class _HomePageState extends State<HomePage> {
                                     ),
                                   );
                                 },
-                                child: Icon(
+                                child: const Icon(
                                   Icons.arrow_forward_rounded,
                                   color: Colors.black,
                                 ),
@@ -433,7 +458,7 @@ class _HomePageState extends State<HomePage> {
             width: double.infinity,
             height: 60.0,
           ),
-          color: Theme.of(context).primaryColor,
+          color: Theme.of(context).appBarTheme.backgroundColor,
         ),
       ),
     );

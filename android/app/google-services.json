@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "483378660549",
+    "project_id": "blueymc-e6cd2",
+    "storage_bucket": "blueymc-e6cd2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:483378660549:android:77cb0559a5609f459b5cac",
+        "android_client_info": {
+          "package_name": "com.mz.Blueymc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "483378660549-qmck2shmcc3uo9fkonir6o4v2e2k0sed.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDDWmY2fU_6cLnEYjn7M07laKURmtom2VU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "483378660549-qmck2shmcc3uo9fkonir6o4v2e2k0sed.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

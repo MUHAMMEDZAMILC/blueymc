@@ -1,5 +1,6 @@
 import 'package:blueymc/common/textstyle.dart';
 import 'package:blueymc/screens/editprofilepage.dart';
+import 'package:blueymc/theme/themeeditpage.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {
@@ -8,8 +9,9 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         title: Text(
           'Settings',
           style: appbar,
@@ -62,7 +64,12 @@ class SettingsPage extends StatelessWidget {
                   style: sign,
                 ),
                 tileColor: Colors.grey,
-                onTap: () {},
+                onTap: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (contaext) => const ThemeEditPage()));
+                },
               ),
             ],
           ),

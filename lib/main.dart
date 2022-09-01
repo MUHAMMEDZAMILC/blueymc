@@ -1,8 +1,19 @@
 import 'package:blueymc/screens/splashscreen.dart';
+import 'package:blueymc/theme/themedata.dart';
+import 'package:blueymc/theme/themeprovider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(
+    ChangeNotifierProvider<ThemeProvider>(
+      create: (_) => ThemeProvider()..initialize(),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -10,12 +21,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        primaryColor: const Color(0xFF022542),
-      ),
-      home: const SplashScreen(),
-    );
+    return Consumer<ThemeProvider>(builder: (context, provider, child) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        themeMode: provider.themeMode,
+        theme: ThemeClass.lightTheme,
+        darkTheme: ThemeClass.darkTheme,
+        home: const SplashScreen(),
+      );
+    });
   }
 }

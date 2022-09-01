@@ -10,17 +10,16 @@ class MatchDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
           title: const Text(
             'Match Name',
             style: appbar,
           ),
-          backgroundColor: const Color(0xFF022542),
         ),
         body: Container(
           width: double.infinity,
           height: double.infinity,
-          color: Colors.amber,
           child: SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.all(20.0),
@@ -46,7 +45,7 @@ class MatchDetailsPage extends StatelessWidget {
                     children: const [
                       Text(
                         'Time : 08:00 pm',
-                        style: small3,
+                        style: TextStyle(fontSize: 20),
                       ),
                     ],
                   ),
@@ -58,7 +57,7 @@ class MatchDetailsPage extends StatelessWidget {
                     children: const [
                       Text(
                         'Day : Sunday',
-                        style: small3,
+                        style: TextStyle(fontSize: 20),
                       ),
                     ],
                   ),
@@ -70,7 +69,7 @@ class MatchDetailsPage extends StatelessWidget {
                     children: const [
                       Text(
                         'Place : Zyco Turf',
-                        style: small3,
+                        style: TextStyle(fontSize: 20),
                       ),
                     ],
                   ),
@@ -82,7 +81,7 @@ class MatchDetailsPage extends StatelessWidget {
                     children: const [
                       Text(
                         'Amount Per Head: 120',
-                        style: small3,
+                        style: TextStyle(fontSize: 20),
                       ),
                     ],
                   ),

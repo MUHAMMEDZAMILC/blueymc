@@ -3,16 +3,32 @@ import 'package:blueymc/common/textstyle.dart';
 import 'package:blueymc/common/validator.dart';
 import 'package:flutter/material.dart';
 
-class EditProfilePage extends StatelessWidget {
+class EditProfilePage extends StatefulWidget {
   const EditProfilePage({Key? key}) : super(key: key);
+
+  @override
+  State<EditProfilePage> createState() => _EditProfilePageState();
+}
+
+class _EditProfilePageState extends State<EditProfilePage> {
+  late bool passwordDVisibility;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    passwordDVisibility = false;
+
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         appBar: AppBar(
           elevation: 0,
           automaticallyImplyLeading: false,
-          backgroundColor: Theme.of(context).primaryColor,
+          backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
           flexibleSpace: SafeArea(
             child: Container(
               padding: EdgeInsets.only(right: 16),
@@ -67,7 +83,7 @@ class EditProfilePage extends StatelessWidget {
                           },
                           // controller: nameController,
                           decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.person),
+                            suffixIcon: Icon(Icons.person),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(20),
@@ -89,7 +105,8 @@ class EditProfilePage extends StatelessWidget {
                                 color: Colors.green,
                               ),
                             ),
-                            hintText: "User Name",
+                            labelText: "User Name",
+                            hintText: "Enter new user name",
                           ),
                         ),
                       ),
@@ -105,7 +122,7 @@ class EditProfilePage extends StatelessWidget {
                           },
                           // controller: numberController,
                           decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.phone),
+                            suffixIcon: Icon(Icons.phone),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(20),
@@ -127,7 +144,8 @@ class EditProfilePage extends StatelessWidget {
                                 color: Colors.green,
                               ),
                             ),
-                            hintText: "Phone Number ",
+                            labelText: "Phone Number ",
+                            hintText: "Enter phone number ",
                           ),
                         ),
                       ),
@@ -143,7 +161,7 @@ class EditProfilePage extends StatelessWidget {
                           },
                           // controller: emailController,
                           decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.email_sharp),
+                            suffixIcon: Icon(Icons.email_sharp),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(20),
@@ -165,7 +183,8 @@ class EditProfilePage extends StatelessWidget {
                                 color: Colors.green,
                               ),
                             ),
-                            hintText: "E-Mail Id",
+                            labelText: "E-Mail Id",
+                            hintText: "Enter your new email ",
                           ),
                         ),
                       ),
@@ -175,14 +194,25 @@ class EditProfilePage extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: TextFormField(
-                          obscureText: true,
+                          obscureText: !passwordDVisibility,
                           keyboardType: TextInputType.number,
                           validator: (value) {
                             return Validate.pwdValidator(value!);
                           },
                           // controller: passwordController,
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.password_sharp),
+                          decoration: InputDecoration(
+                            suffixIcon: InkWell(
+                              onTap: () => setState(
+                                () =>
+                                    passwordDVisibility = !passwordDVisibility,
+                              ),
+                              child: Icon(
+                                passwordDVisibility
+                                    ? Icons.visibility_outlined
+                                    : Icons.visibility_off_outlined,
+                                size: 20,
+                              ),
+                            ),
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.all(
                                 Radius.circular(20),
@@ -204,46 +234,8 @@ class EditProfilePage extends StatelessWidget {
                                 color: Colors.green,
                               ),
                             ),
-                            hintText: "Password",
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 5,
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 30.0),
-                        child: TextFormField(
-                          obscureText: true,
-                          keyboardType: TextInputType.number,
-                          validator: (value) {
-                            return Validate.pwdValidator(value!);
-                          },
-                          // controller: confirmController,
-                          decoration: const InputDecoration(
-                            prefixIcon: Icon(Icons.password_sharp),
-                            border: OutlineInputBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(20),
-                              ),
-                              borderSide: BorderSide(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide(
-                                color: Colors.grey,
-                              ),
-                            ),
-                            focusedBorder: OutlineInputBorder(
-                              //borderRadius: BorderRadius.all(Radius.circular(20)),
-                              borderSide: BorderSide(
-                                color: Colors.green,
-                              ),
-                            ),
-                            hintText: "Comfirm Password",
+                            labelText: "Password",
+                            hintText: "Enter your new password",
                           ),
                         ),
                       ),
@@ -265,8 +257,13 @@ class EditProfilePage extends StatelessWidget {
                               //   ),
                               // );
                             },
-                            child: Text("Update Profile"),
+                            child: Text(
+                              "Update Profile",
+                              style: TextStyle(color: Colors.white),
+                            ),
                             style: ButtonStyle(
+                              shadowColor:
+                                  MaterialStateProperty.all(Colors.white),
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
@@ -274,7 +271,7 @@ class EditProfilePage extends StatelessWidget {
                                 ),
                               ),
                               backgroundColor: MaterialStateProperty.all(
-                                Color(0xFF022542),
+                                Color(0xFFFF3815),
                               ),
                             ),
                           ),

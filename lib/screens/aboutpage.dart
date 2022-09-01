@@ -13,9 +13,10 @@ class AboutPage extends StatelessWidget {
           "About",
           style: appbar,
         ),
-        backgroundColor: Color(0xFF022542),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: Container(
+        color: Theme.of(context).scaffoldBackgroundColor,
         height: MediaQuery.of(context).size.height,
         child: SingleChildScrollView(
           child: Column(
@@ -27,7 +28,7 @@ class AboutPage extends StatelessWidget {
                   padding: const EdgeInsets.all(10.0),
                   child: Text(
                     """This is a mobile application our Blue YMC sports and arts club at tippunagar """,
-                    style: small2,
+                    style: TextStyle(fontSize: 20, fontFamily: 'Kaush'),
                   ),
                 ),
               ),
@@ -60,7 +61,8 @@ class AboutPage extends StatelessWidget {
                                 color: Colors.grey,
                               ),
                             ),
-                            hintText: "FeedBack"),
+                            labelText: "FeedBack",
+                            hintText: "Enter your experience :"),
                       ),
                       // SizedBox(height: 48,),
                       Padding(
@@ -76,8 +78,13 @@ class AboutPage extends StatelessWidget {
                               //     MaterialPageRoute(
                               //         builder: (context) => HomePage()));
                             },
-                            child: const Text("Submit"),
+                            child: const Text(
+                              "Submit",
+                              style: TextStyle(color: Colors.white),
+                            ),
                             style: ButtonStyle(
+                              shadowColor:
+                                  MaterialStateProperty.all(Colors.white),
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
@@ -85,7 +92,7 @@ class AboutPage extends StatelessWidget {
                                 ),
                               ),
                               backgroundColor: MaterialStateProperty.all(
-                                const Color(0xFF022542),
+                                const Color(0xFFFF3815),
                               ),
                             ),
                           ),
@@ -110,4 +117,4 @@ class AboutPage extends StatelessWidget {
   //         backgroundColor: Color(0xff8E2DE2),
   //       )
   //   );
-  // };
+  // };  

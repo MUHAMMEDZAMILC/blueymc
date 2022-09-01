@@ -31,7 +31,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -142,8 +142,13 @@ class _LoginPageState extends State<LoginPage> {
                                 MaterialPageRoute(
                                     builder: (context) => HomePage()));
                           },
-                          child: const Text("Login"),
+                          child: Text(
+                            "Login",
+                            style: TextStyle(color: Colors.white),
+                          ),
                           style: ButtonStyle(
+                            shadowColor:
+                                MaterialStateProperty.all(Colors.white),
                             shape: MaterialStateProperty.all<
                                 RoundedRectangleBorder>(
                               RoundedRectangleBorder(
@@ -151,7 +156,7 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                             ),
                             backgroundColor: MaterialStateProperty.all(
-                              const Color(0xFF022542),
+                              const Color(0xFFFF3815),
                             ),
                           ),
                         ),

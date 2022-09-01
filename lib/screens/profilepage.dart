@@ -9,10 +9,11 @@ class ProfilePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         flexibleSpace: SafeArea(
           child: Container(
             padding: EdgeInsets.only(right: 16),
@@ -72,7 +73,7 @@ class ProfilePage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: ListTile(
-                  tileColor: Color(0xFF022542),
+                  tileColor: Color(0xFF023B69),
                   leading: Icon(
                     Icons.person,
                     color: Colors.white,
@@ -90,7 +91,7 @@ class ProfilePage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: ListTile(
-                  tileColor: Color(0xFF022542),
+                  tileColor: Color(0xFF023B69),
                   leading: Icon(
                     Icons.mail,
                     color: Colors.white,
@@ -108,7 +109,7 @@ class ProfilePage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: ListTile(
-                  tileColor: Color(0xFF022542),
+                  tileColor: Color(0xFF023B69),
                   leading: Icon(
                     Icons.phone,
                     color: Colors.white,
@@ -126,7 +127,7 @@ class ProfilePage extends StatelessWidget {
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: ListTile(
-                  tileColor: Color(0xFF022542),
+                  tileColor: Color(0xFF023B69),
                   leading: Icon(
                     Icons.card_membership_sharp,
                     color: Colors.white,

@@ -4,6 +4,8 @@ import 'package:blueymc/common/validator.dart';
 import 'package:blueymc/screens/admin/adminhomepage.dart';
 import 'package:blueymc/screens/homepage.dart';
 import 'package:blueymc/screens/loginpage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class RegistrationPage extends StatefulWidget {
@@ -37,7 +39,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white,
+      // backgroundColor: Colors.white,
       body: Container(
         width: double.infinity,
         height: double.infinity,
@@ -171,12 +173,30 @@ class _RegistrationPageState extends State<RegistrationPage> {
                         padding: const EdgeInsets.symmetric(horizontal: 30.0),
                         child: DropdownButtonFormField<String>(
                           value: status,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             labelText: "Status",
                             hintText: 'Select your status:*',
                             suffixIcon: Icon(Icons.card_membership),
                             border: OutlineInputBorder(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.all(
+                                Radius.circular(20),
+                              ),
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                              ),
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                              borderRadius:
+                                  BorderRadius.all(Radius.circular(20)),
+                              borderSide: BorderSide(
+                                color: Colors.grey,
+                              ),
+                            ),
+                            focusedBorder: OutlineInputBorder(
+                              // borderRadius: BorderRadius.all(Radius.circular(20)),
+                              borderSide: BorderSide(
+                                color: Colors.green,
+                              ),
                             ),
                           ),
                           onChanged: (ctgry) => setState(() => status = ctgry),
@@ -259,11 +279,11 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           decoration: InputDecoration(
                               suffixIcon: InkWell(
                                 onTap: () => setState(
-                                  () => passwordDVisibility =
-                                      !passwordDVisibility,
+                                  () => passwordCVisibility =
+                                      !passwordCVisibility,
                                 ),
                                 child: Icon(
-                                  passwordDVisibility
+                                  passwordCVisibility
                                       ? Icons.visibility_outlined
                                       : Icons.visibility_off_outlined,
                                   size: 20,
@@ -304,16 +324,53 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           width: 270,
                           child: ElevatedButton(
                             onPressed: () {
-                              registerKey.currentState!.validate();
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => AdminHomePage(),
-                                ),
-                              );
+                              if (registerKey.currentState!.validate()) {
+                                FirebaseAuth.instance
+                                    .createUserWithEmailAndPassword(
+                                        email: emailController.text,
+                                        password: passwordController.text)
+                                    .then((value) {
+                                  FirebaseFirestore.instance
+                                      .collection('login')
+                                      .doc(value.user!.uid)
+                                      .set({
+                                        'uid': value.user!.uid,
+                                        'name': nameController.text,
+                                        'email': emailController.text,
+                                        'password': passwordController.text,
+                                        'usertype': 'member',
+                                        'status': 1,
+                                      })
+                                      .then((val) => FirebaseFirestore.instance
+                                              .collection('member')
+                                              .doc(value.user!.uid)
+                                              .set({
+                                            'uid': value.user!.uid,
+                                            'email': emailController.text,
+                                            'password': passwordController.text,
+                                            'name': nameController.text,
+                                            'usertype': status,
+                                            'status': 1,
+                                            'phonenumber':
+                                                numberController.text,
+                                            'date': DateTime.now()
+                                          }))
+                                      .then((value) {
+                                        showsnackbar('Successfuly Registered');
+                                        Navigator.pop(context);
+                                      });
+                                }).catchError((e) =>
+                                        showsnackbar('Registration Failed'));
+                              }
+                              ;
                             },
-                            child: Text("Sign Up"),
+                            child: Text(
+                              "Sign Up",
+                              style: TextStyle(color: Colors.white),
+                            ),
                             style: ButtonStyle(
+                              shadowColor:
+                                  MaterialStateProperty.all(Colors.white),
                               shape: MaterialStateProperty.all<
                                   RoundedRectangleBorder>(
                                 RoundedRectangleBorder(
@@ -321,7 +378,7 @@ class _RegistrationPageState extends State<RegistrationPage> {
                                 ),
                               ),
                               backgroundColor: MaterialStateProperty.all(
-                                const Color(0xFF022542),
+                                const Color(0xFFFF3815),
                               ),
                             ),
                           ),
@@ -361,5 +418,12 @@ class _RegistrationPageState extends State<RegistrationPage> {
         ),
       ),
     );
+  }
+
+  showsnackbar(var msg) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(msg),
+      //backgroundColor: ,
+    ));
   }
 }

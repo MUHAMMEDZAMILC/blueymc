@@ -11,7 +11,7 @@ class MyClipPath extends StatelessWidget {
         width: double.infinity,
         height: MediaQuery.of(context).size.height * 0.4,
         decoration: BoxDecoration(
-          color: Color(0xFF022542),
+          color: Color(0xFFFF3815),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.8),
@@ -58,7 +58,7 @@ class MyClipPath2 extends StatelessWidget {
         width: double.infinity,
         height: MediaQuery.of(context).size.height * 0.4,
         decoration: BoxDecoration(
-          color: Color(0xFF022542),
+          color: Color(0xFFFF3815),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.8),

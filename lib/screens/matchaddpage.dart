@@ -14,9 +14,9 @@ class MatchAddPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan,
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        backgroundColor: const Color(0xFF022542),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         title: const Text(
           'Start Match',
           style: appbar,
@@ -105,8 +105,10 @@ class MatchAddPage extends StatelessWidget {
                         ),
                       ),
                       focusedBorder: OutlineInputBorder(
-                        // borderRadius: BorderRadius.all(Radius.circular(2*******0)),
-                        borderSide: BorderSide(),
+                        // borderRadius: BorderRadius.all(Radius.circular(20)),
+                        borderSide: BorderSide(
+                          color: Colors.green,
+                        ),
                       ),
                       hintText: " Date & Time: * ",
                     ),

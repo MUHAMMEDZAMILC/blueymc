@@ -158,9 +158,10 @@ class _ChatPageState extends State<ChatPage> {
             child: TextField(
               controller: messageController,
               keyboardType: TextInputType.text,
-              style: TextStyle(
-                color: Colors.white,
-              ),
+              // style: TextStyle(
+              //   color: Colors.white,
+              // ),
+              style: Theme.of(context).textTheme.headline1,
               decoration: const InputDecoration(
                 fillColor: Colors.white,
                 hintStyle: TextStyle(color: Colors.white),
@@ -214,6 +215,7 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'MZ',

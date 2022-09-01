@@ -24,10 +24,11 @@ class _ChatingPageNewState extends State<ChatingPageNew> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
-        backgroundColor: Theme.of(context).primaryColor,
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
         flexibleSpace: SafeArea(
           child: Container(
             padding: EdgeInsets.only(right: 16),
@@ -97,7 +98,7 @@ class _ChatingPageNewState extends State<ChatingPageNew> {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
                       color: (messages[index].messageType == "receiver"
-                          ? Colors.grey.shade200
+                          ? Color(0xFF7E7979)
                           : Colors.blue[200]),
                     ),
                     padding: const EdgeInsets.all(16),
@@ -116,7 +117,7 @@ class _ChatingPageNewState extends State<ChatingPageNew> {
               padding: EdgeInsets.only(left: 10, bottom: 10, top: 10),
               height: 60,
               width: double.infinity,
-              color: Theme.of(context).primaryColor,
+              color: Theme.of(context).appBarTheme.backgroundColor,
               child: Row(
                 children: <Widget>[
                   const Expanded(

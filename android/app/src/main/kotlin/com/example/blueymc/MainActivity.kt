@@ -1,4 +1,4 @@
-package com.example.blueymc
+package com.mz.Blueymc
 
 import io.flutter.embedding.android.FlutterActivity
 

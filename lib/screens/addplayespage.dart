@@ -7,12 +7,13 @@ class AddPlayers extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Match Name',
           style: appbar,
         ),
-        backgroundColor: const Color(0xFF022542),
+        backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
       ),
       body: Container(
         width: double.infinity,
