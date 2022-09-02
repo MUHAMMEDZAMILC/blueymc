@@ -1,8 +1,11 @@
 import 'package:blueymc/common/clippath.dart';
 import 'package:blueymc/common/textstyle.dart';
 import 'package:blueymc/common/validator.dart';
+import 'package:blueymc/screens/admin/adminhomepage.dart';
 import 'package:blueymc/screens/homepage.dart';
 import 'package:blueymc/screens/registrationpae.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -136,11 +139,68 @@ class _LoginPageState extends State<LoginPage> {
                         width: 270,
                         child: ElevatedButton(
                           onPressed: () {
-                            loginKey.currentState!.validate();
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => HomePage()));
+                            if (loginKey.currentState!.validate()) {
+                              if (emailController.text ==
+                                      'masterzing049@gmail.com' &&
+                                  passwordController.text == '8086851333') {
+                                Navigator.pushReplacement(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            const AdminHomePage()));
+                              } else {
+                                FirebaseAuth.instance
+                                    .signInWithEmailAndPassword(
+                                        email: emailController.text,
+                                        password: passwordController.text)
+                                    .then((value) => FirebaseFirestore.instance
+                                            .collection('login')
+                                            .doc(value.user!.uid)
+                                            .get()
+                                            .then((value) {
+                                          if (value.data()!['usertype'] ==
+                                                  'member' ||
+                                              value.data()!['usertype'] ==
+                                                      'player' &&
+                                                  value.data()!['status'] ==
+                                                      1) {
+                                            FirebaseFirestore.instance
+                                                .collection('member')
+                                                .doc(value.data()!['uid'])
+                                                .get()
+                                                .then(
+                                                    (value) => Navigator
+                                                            .pushReplacement(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                              builder:
+                                                                  (context) =>
+                                                                      HomePage(
+                                                                        uid: value
+                                                                            .data()!['uid'],
+                                                                        name: value
+                                                                            .data()!['name'],
+                                                                        email: value
+                                                                            .data()!['email'],
+                                                                        phonenumber:
+                                                                            value.data()!['phonenumber'],
+                                                                        usertype:
+                                                                            value.data()!['usertype'],
+                                                                      )),
+                                                        ));
+                                          } else {
+                                            showsnackbar('Cannot Login!');
+                                          }
+                                        }))
+                                    .catchError((e) => showsnackbar(
+                                        ' Invalid Username or Password'));
+                              }
+                            }
+                            // loginKey.currentState!.validate();
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => HomePage()));
                           },
                           child: Text(
                             "Login",
@@ -194,5 +254,12 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
     );
+  }
+
+  showsnackbar(var msg) {
+    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+      content: Text(msg),
+      //backgroundColor: ,
+    ));
   }
 }

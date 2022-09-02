@@ -11,10 +11,23 @@ import 'package:blueymc/screens/settingspage.dart';
 import 'package:blueymc/screens/viewallmembers.dart';
 import 'package:blueymc/screens/viewallplayers.dart';
 import 'package:blueymc/theme/themedata.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({Key? key}) : super(key: key);
+  var name;
+  var phonenumber;
+  var email;
+  var usertype;
+  var uid;
+  HomePage(
+      {Key? key,
+      this.email,
+      this.name,
+      this.phonenumber,
+      this.uid,
+      this.usertype})
+      : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -228,91 +241,112 @@ class _HomePageState extends State<HomePage> {
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.35,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 4,
-                  itemBuilder: (context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                        left: 10,
-                        top: 10,
-                        right: 0,
-                        bottom: 20,
-                      ),
-                      child: Container(
-                        width: 160,
-                        height: 180,
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              top: 0,
+                child: StreamBuilder<QuerySnapshot>(
+                  stream: FirebaseFirestore.instance
+                      .collection('member')
+                      .where('status', isEqualTo: 1)
+                      .where('usertype', isEqualTo: 'member')
+                      .limit(4)
+                      .snapshots(),
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Center(
+                        child: CircularProgressIndicator(),
+                      );
+                    } else if (snapshot.data!.docs.length == 0) {
+                      return Center(child: Text("No Data Found"));
+                    } else {
+                      return ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                left: 10,
+                                top: 10,
+                                right: 0,
+                                bottom: 20,
+                              ),
                               child: Container(
-                                decoration: containerdec,
-                                height: 200,
-                                width: 150,
-                              ),
-                            ),
-                            Positioned(
-                              top: 0,
-                              child: Container(
-                                decoration: containerdec2,
-                                height: 140,
-                                width: 150,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/avatar.png',
-                                        scale: 3,
-                                        alignment: Alignment.topCenter,
+                                width: 160,
+                                height: 180,
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      top: 0,
+                                      child: Container(
+                                        decoration: containerdec,
+                                        height: 200,
+                                        width: 150,
                                       ),
-                                      Text(
-                                        'MZ',
-                                        style: name,
-                                      ),
-                                      Text(
-                                        '★★★★★',
-                                        style: name,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              top: 150,
-                              left: 42,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => MemberDetailsPage(),
                                     ),
-                                  );
-                                },
-                                child: Icon(
-                                  Icons.arrow_forward_rounded,
-                                  color: Colors.black,
-                                ),
-                                style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                                    Positioned(
+                                      top: 0,
+                                      child: Container(
+                                        decoration: containerdec2,
+                                        height: 140,
+                                        width: 150,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            children: [
+                                              Image.asset(
+                                                'assets/images/avatar.png',
+                                                scale: 3,
+                                                alignment: Alignment.topCenter,
+                                              ),
+                                              Text(
+                                                snapshot.data!.docs[index]
+                                                    ['name'],
+                                                style: name,
+                                              ),
+                                              Text(
+                                                '★★★★★',
+                                                style: name,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  backgroundColor: MaterialStateProperty.all(
-                                    Colors.white,
-                                  ),
+                                    Positioned(
+                                      top: 150,
+                                      left: 42,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  MemberDetailsPage(),
+                                            ),
+                                          );
+                                        },
+                                        child: Icon(
+                                          Icons.arrow_forward_rounded,
+                                          color: Colors.black,
+                                        ),
+                                        style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                            ),
+                                          ),
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                            Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
+                            );
+                          });
+                    }
                   },
                 ),
               ),
@@ -343,93 +377,113 @@ class _HomePageState extends State<HomePage> {
               ),
               Container(
                 height: MediaQuery.of(context).size.height * 0.35,
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: 4,
-                  itemBuilder: (context, int index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(
-                        left: 10,
-                        top: 10,
-                        right: 0,
-                        bottom: 20,
-                      ),
-                      child: Container(
-                        width: 160,
-                        height: 180,
-                        child: Stack(
-                          children: [
-                            Positioned(
-                              top: 0,
+                child: StreamBuilder<QuerySnapshot>(
+                    stream: FirebaseFirestore.instance
+                        .collection('member')
+                        .where('status', isEqualTo: 1)
+                        .where('usertype', isEqualTo: 'player')
+                        .limit(4)
+                        .snapshots(),
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return Center(child: CircularProgressIndicator());
+                      } else if (snapshot.hasData &&
+                          snapshot.data!.docs.length == 0) {
+                        return Center(child: Text("No Data Found"));
+                      } else {
+                        return ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: snapshot.data!.docs.length,
+                          itemBuilder: (context, int index) {
+                            return Padding(
+                              padding: const EdgeInsets.only(
+                                left: 10,
+                                top: 10,
+                                right: 0,
+                                bottom: 20,
+                              ),
                               child: Container(
-                                decoration: containerdec,
-                                height: 200,
-                                width: 150,
-                              ),
-                            ),
-                            Positioned(
-                              top: 0,
-                              child: Container(
-                                decoration: containerdec2,
-                                height: 140,
-                                width: 150,
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8.0),
-                                  child: Column(
-                                    children: [
-                                      Image.asset(
-                                        'assets/images/avatar.png',
-                                        scale: 3,
-                                        alignment: Alignment.topCenter,
+                                width: 160,
+                                height: 180,
+                                child: Stack(
+                                  children: [
+                                    Positioned(
+                                      top: 0,
+                                      child: Container(
+                                        decoration: containerdec,
+                                        height: 200,
+                                        width: 150,
                                       ),
-                                      Text(
-                                        'MZ',
-                                        style: name,
-                                      ),
-                                      Text(
-                                        '★★★★★',
-                                        style: name,
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Positioned(
-                              top: 150,
-                              left: 42,
-                              child: ElevatedButton(
-                                onPressed: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => MemberDetailsPage(),
                                     ),
-                                  );
-                                },
-                                child: const Icon(
-                                  Icons.arrow_forward_rounded,
-                                  color: Colors.black,
-                                ),
-                                style: ButtonStyle(
-                                  shape: MaterialStateProperty.all<
-                                      RoundedRectangleBorder>(
-                                    RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(30),
+                                    Positioned(
+                                      top: 0,
+                                      child: Container(
+                                        decoration: containerdec2,
+                                        height: 140,
+                                        width: 150,
+                                        child: Padding(
+                                          padding: const EdgeInsets.all(8.0),
+                                          child: Column(
+                                            children: [
+                                              Image.asset(
+                                                'assets/images/avatar.png',
+                                                scale: 3,
+                                                alignment: Alignment.topCenter,
+                                              ),
+                                              Text(
+                                                snapshot.data!.docs[index]
+                                                    ['name'],
+                                                style: name,
+                                              ),
+                                              Text(
+                                                '★★★★★',
+                                                style: name,
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
                                     ),
-                                  ),
-                                  backgroundColor: MaterialStateProperty.all(
-                                    Colors.white,
-                                  ),
+                                    Positioned(
+                                      top: 150,
+                                      left: 42,
+                                      child: ElevatedButton(
+                                        onPressed: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  MemberDetailsPage(),
+                                            ),
+                                          );
+                                        },
+                                        child: const Icon(
+                                          Icons.arrow_forward_rounded,
+                                          color: Colors.black,
+                                        ),
+                                        style: ButtonStyle(
+                                          shape: MaterialStateProperty.all<
+                                              RoundedRectangleBorder>(
+                                            RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
+                                            ),
+                                          ),
+                                          backgroundColor:
+                                              MaterialStateProperty.all(
+                                            Colors.white,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
                                 ),
                               ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    );
-                  },
-                ),
+                            );
+                          },
+                        );
+                      }
+                    }),
               )
             ],
           ),

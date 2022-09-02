@@ -203,8 +203,8 @@ class _RegistrationPageState extends State<RegistrationPage> {
                           validator: (value) =>
                               value == null ? 'field required' : null,
                           items: [
-                            'Player',
-                            'Member',
+                            'player',
+                            'member',
                           ].map<DropdownMenuItem<String>>((String value) {
                             return DropdownMenuItem<String>(
                               value: value,

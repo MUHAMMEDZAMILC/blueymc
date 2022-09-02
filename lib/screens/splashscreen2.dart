@@ -77,6 +77,8 @@ class _SplashScreen2State extends State<SplashScreen2> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Container(
+        width: double.infinity,
+        height: double.infinity,
         decoration: const BoxDecoration(
           color: Colors.white,
         ),
