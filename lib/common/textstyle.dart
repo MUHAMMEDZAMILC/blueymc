@@ -39,7 +39,10 @@ const TextStyle profile = TextStyle(
 const TextStyle name = TextStyle(
     color: Color(0xFFFFFFFF), fontSize: 15, fontWeight: FontWeight.w700);
 const TextStyle name2 = TextStyle(
-    color: Color(0xFFFFFFFF), fontSize: 20, fontWeight: FontWeight.w700);
+    color: Color(0xFFFFFFFF),
+    fontSize: 20,
+    fontWeight: FontWeight.w600,
+    fontFamily: 'Poppins');
 const TextStyle activity = TextStyle(
     color: Color.fromARGB(255, 252, 205, 53),
     fontSize: 20,
@@ -48,3 +51,8 @@ const TextStyle activity = TextStyle(
 const TextStyle mz = TextStyle(
     color: Color(0xFF022542), fontSize: 25, fontWeight: FontWeight.w700);
 // const TextStyle? mz1 = Theme.of(context).textTheme.headline1;
+
+const email = TextStyle(
+  fontFamily: 'Poppins',
+  color: Colors.black,
+);

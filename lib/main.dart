@@ -1,6 +1,6 @@
-import 'package:blueymc/screens/splashscreen.dart';
-import 'package:blueymc/theme/themedata.dart';
-import 'package:blueymc/theme/themeprovider.dart';
+import 'package:blueymc/screens/home/match/matchaddpage.dart';
+import 'package:blueymc/screens/settings/settingcontents/theme/themedata.dart';
+import 'package:blueymc/screens/settings/settingcontents/theme/themeprovider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
         themeMode: provider.themeMode,
         theme: ThemeClass.lightTheme,
         darkTheme: ThemeClass.darkTheme,
-        home: const SplashScreen(),
+        home: MatchAddPage(),
       );
     });
   }

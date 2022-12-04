@@ -5,7 +5,19 @@ import 'package:blueymc/screens/chatpage.dart';
 import 'package:flutter/material.dart';
 
 class MemberDetailsPage extends StatefulWidget {
-  MemberDetailsPage({Key? key}) : super(key: key);
+  var uid;
+  var name;
+  var phonenumber;
+  var email;
+  var usertype;
+  MemberDetailsPage(
+      {Key? key,
+      this.email,
+      this.name,
+      this.phonenumber,
+      this.usertype,
+      this.uid})
+      : super(key: key);
 
   @override
   State<MemberDetailsPage> createState() => _MemberDetailsPageState();
@@ -18,8 +30,8 @@ class _MemberDetailsPageState extends State<MemberDetailsPage> {
       backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
         backgroundColor: Theme.of(context).appBarTheme.backgroundColor,
-        title: const Text(
-          'MZ',
+        title: Text(
+          widget.name,
           style: appbar,
         ),
         actions: [
@@ -73,6 +85,19 @@ class _MemberDetailsPageState extends State<MemberDetailsPage> {
                               decoration: containerdec4,
                               height: 170,
                               width: 200,
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    widget.name,
+                                    style: name2,
+                                  ),
+                                  Text(
+                                    '★★★★★',
+                                    style: name2,
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                           Positioned(
@@ -83,20 +108,6 @@ class _MemberDetailsPageState extends State<MemberDetailsPage> {
                               scale: 2,
                             ),
                           ),
-                          const Positioned(
-                              top: 20,
-                              left: 79,
-                              child: Text(
-                                'MZ',
-                                style: name2,
-                              )),
-                          const Positioned(
-                              top: 50,
-                              left: 47,
-                              child: Text(
-                                '★★★★★',
-                                style: name2,
-                              )),
                           Positioned(
                             top: 290,
                             left: 0,
@@ -192,14 +203,15 @@ class _MemberDetailsPageState extends State<MemberDetailsPage> {
                                 itemCount: 5,
                                 itemBuilder: (BuildContext context, int index) {
                                   return Padding(
-                                    padding: EdgeInsetsDirectional.fromSTEB(
-                                        10, 10, 10, 10),
+                                    padding:
+                                        const EdgeInsetsDirectional.fromSTEB(
+                                            10, 10, 10, 10),
                                     child: Container(
                                       width: MediaQuery.of(context).size.width *
                                           0.98,
                                       decoration: BoxDecoration(
                                         color: Colors.white,
-                                        boxShadow: [
+                                        boxShadow: const [
                                           BoxShadow(
                                             blurRadius: 4,
                                             color: Color(0x33000000),
@@ -209,15 +221,16 @@ class _MemberDetailsPageState extends State<MemberDetailsPage> {
                                         borderRadius: BorderRadius.circular(16),
                                       ),
                                       child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            10, 10, 10, 0),
+                                        padding: const EdgeInsetsDirectional
+                                            .fromSTEB(10, 10, 10, 0),
                                         child: SingleChildScrollView(
                                           child: Column(
                                             mainAxisSize: MainAxisSize.max,
                                             children: [
                                               Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(16, 8, 16, 0),
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                        .fromSTEB(16, 8, 16, 0),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
@@ -332,7 +345,7 @@ class _MemberDetailsPageState extends State<MemberDetailsPage> {
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
-                                                  children: [
+                                                  children: const [
                                                     Text(
                                                       // 'Location : ${data[index]['location']}',
                                                       'Location :Zyco',
@@ -347,12 +360,14 @@ class _MemberDetailsPageState extends State<MemberDetailsPage> {
                                                 ),
                                               ),
                                               Padding(
-                                                padding: EdgeInsetsDirectional
-                                                    .fromSTEB(10, 10, 10, 10),
+                                                padding:
+                                                    const EdgeInsetsDirectional
+                                                            .fromSTEB(
+                                                        10, 10, 10, 10),
                                                 child: Row(
                                                   mainAxisSize:
                                                       MainAxisSize.max,
-                                                  children: [
+                                                  children: const [
                                                     Text(
                                                       // 'Location : ${data[index]['location']}',
                                                       'Marks: 10:9',

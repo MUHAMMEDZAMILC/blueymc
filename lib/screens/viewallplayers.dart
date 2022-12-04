@@ -1,9 +1,12 @@
 import 'package:blueymc/common/textstyle.dart';
 import 'package:blueymc/screens/memberdetails.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class ViewAllPlayers extends StatelessWidget {
-  const ViewAllPlayers({Key? key}) : super(key: key);
+  ViewAllPlayers({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,166 +23,205 @@ class ViewAllPlayers extends StatelessWidget {
         width: double.infinity,
         height: double.infinity,
         child: Container(
-          child: ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: 15,
-              itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.96,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      boxShadow: [
-                        BoxShadow(
-                          blurRadius: 4,
-                          color: Color(0x33000000),
-                          offset: Offset(0, 2),
-                        )
-                      ],
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
-                      child: SingleChildScrollView(
-                        child: Column(
-                          mainAxisSize: MainAxisSize.max,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsetsDirectional.fromSTEB(
-                                  16, 8, 110, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Card(
-                                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                                    color: Color(0xFFDBE2E7),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(40),
-                                    ),
-                                    child: Container(
-                                      width: 50,
-                                      height: 50,
+          child: StreamBuilder<QuerySnapshot>(
+              stream: FirebaseFirestore.instance
+                  .collection('member')
+                  .where('status', isEqualTo: 1)
+                  .where('usertype', isEqualTo: 'player')
+                  .snapshots(),
+              builder: (context, snapshot) {
+                if (!snapshot.hasData) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (snapshot.data!.docs.length == 0) {
+                  return Center(child: Text("No Data Found"));
+                } else {
+                  return ListView.builder(
+                      scrollDirection: Axis.vertical,
+                      itemCount: snapshot.data!.docs.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return Padding(
+                          padding:
+                              EdgeInsetsDirectional.fromSTEB(10, 10, 10, 10),
+                          child: Container(
+                            width: MediaQuery.of(context).size.width * 0.96,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              boxShadow: const [
+                                BoxShadow(
+                                  blurRadius: 4,
+                                  color: Color(0x33000000),
+                                  offset: Offset(0, 2),
+                                )
+                              ],
+                              borderRadius: BorderRadius.circular(16),
+                            ),
+                            child: Padding(
+                              padding:
+                                  EdgeInsetsDirectional.fromSTEB(10, 10, 10, 0),
+                              child: SingleChildScrollView(
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.max,
+                                  children: [
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              16, 8, 110, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        // mainAxisAlignment:
+                                        //     MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Card(
+                                            clipBehavior:
+                                                Clip.antiAliasWithSaveLayer,
+                                            color: const Color(0xFFDBE2E7),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(40),
+                                            ),
+                                            child: Container(
+                                              width: 50,
+                                              height: 50,
 
-                                      clipBehavior: Clip.antiAlias,
-                                      decoration: BoxDecoration(
-                                        // color: Colors.amber,
-                                        shape: BoxShape.circle,
-                                      ),
-                                      //   child: CachedNetworkImage(
-                                      //     imageUrl: data[index]['photoUrl'],
-                                      // ),
-                                      child: Image.asset(
-                                        'assets/images/avatar.png',
-                                        fit: BoxFit.cover,
-                                        // scale: 1,
-                                        width: 50,
-                                        height: 50,
-                                      ),
-                                      // ),
-                                    ),
-                                  ),
-                                  const Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      // data[index]['uname'],
-                                      'Master Zing',
-                                      // style:
-                                      style: TextStyle(
-                                        fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF151B1E),
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 10, 0, 0),
-                              child: Row(
-                                children: const [
-                                  Padding(
-                                    padding: EdgeInsets.all(8.0),
-                                    child: Text(
-                                      // data[index]['uname'],
-                                      'Master Zing',
-                                      // style:
-                                      style: TextStyle(
-                                        fontFamily: 'Lexend Deca',
-                                        color: Color(0xFF151B1E),
-                                        fontSize: 18,
-                                        fontWeight: FontWeight.w500,
+                                              clipBehavior: Clip.antiAlias,
+                                              decoration: const BoxDecoration(
+                                                // color: Colors.amber,
+                                                shape: BoxShape.circle,
+                                              ),
+                                              //   child: CachedNetworkImage(
+                                              //     imageUrl: data[index]['photoUrl'],
+                                              // ),
+                                              child: Image.asset(
+                                                'assets/images/avatar.png',
+                                                fit: BoxFit.cover,
+                                                // scale: 1,
+                                                width: 50,
+                                                height: 50,
+                                              ),
+                                              // ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: EdgeInsets.all(8.0),
+                                            child: Text(
+                                              snapshot.data!.docs[index]
+                                                  ['name'],
+                                              // style:
+                                              style: const TextStyle(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF151B1E),
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(20, 10, 0, 0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Text(
-                                    // 'Location : ${data[index]['location']}',
-                                    'Location :Thazhekode',
-                                    // style: FlutterFlowTheme.bodyText1
-                                    // .override(
-                                    style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      color: Colors.black,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  EdgeInsetsDirectional.fromSTEB(16, 4, 16, 10),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.end,
-                                children: [
-                                  ElevatedButton(
-                                    style: ButtonStyle(
-                                      backgroundColor:
-                                          MaterialStateProperty.all(
-                                        Color.fromARGB(214, 0, 7, 7),
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              20, 10, 0, 0),
+                                      child: Row(
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(8.0),
+                                            child: Text(
+                                              snapshot.data!.docs[index]
+                                                  ['phonenumber'],
+                                              style: const TextStyle(
+                                                fontFamily: 'Lexend Deca',
+                                                color: Color(0xFF151B1E),
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.w500,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                    child: Icon(
-                                      Icons.check_circle,
-                                      color: Color.fromARGB(255, 236, 236, 236),
-                                      size: 30,
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              20, 10, 0, 0),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        children: [
+                                          const Text(
+                                            'Email Id:',
+                                            style: email,
+                                          ),
+                                          Text(
+                                            snapshot.data!.docs[index]['email'],
+                                            style: email,
+                                          ),
+                                        ],
+                                      ),
                                     ),
-                                    onPressed: () async {
-                                      // // DocumentSnapshot doc=data[0];
-                                      // await doc.reference.update({
-                                      //   'status':2,
-                                      // });
+                                    Padding(
+                                      padding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              16, 4, 16, 10),
+                                      child: Row(
+                                        mainAxisSize: MainAxisSize.max,
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.end,
+                                        children: [
+                                          ElevatedButton(
+                                            style: ButtonStyle(
+                                              backgroundColor:
+                                                  MaterialStateProperty.all(
+                                                const Color.fromARGB(
+                                                    214, 0, 7, 7),
+                                              ),
+                                            ),
+                                            child: const Icon(
+                                              Icons.check_circle,
+                                              color: Color.fromARGB(
+                                                  255, 236, 236, 236),
+                                              size: 30,
+                                            ),
+                                            onPressed: () async {
+                                              // // DocumentSnapshot doc=data[0];
+                                              // await doc.reference.update({
+                                              //   'status':2,
+                                              // });
 
-                                      Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                              builder: (contaxt) =>
-                                                  MemberDetailsPage()));
-                                    },
-                                  ),
-                                ],
+                                              Navigator.push(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (contaxt) =>
+                                                          MemberDetailsPage(
+                                                            name: snapshot.data!
+                                                                    .docs[index]
+                                                                ['name'],
+                                                            phonenumber: snapshot
+                                                                    .data!
+                                                                    .docs[index]
+                                                                ['phonenumber'],
+                                                            email: snapshot
+                                                                    .data!
+                                                                    .docs[index]
+                                                                ['email'],
+                                                            uid: snapshot.data!
+                                                                    .docs[index]
+                                                                ['uid'],
+                                                          )));
+                                            },
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
                               ),
                             ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                );
+                          ),
+                        );
+                      });
+                }
               }),
         ),
       ),

@@ -61,25 +61,17 @@ class Validate {
     }
   }
 
+  static String? LocationValidator(String value) {
+    if (value.toString() == "") {
+      return " Location is Null ";
+    } else {
+      return null;
+    }
+  }
+
   static String? DayValidator(String value) {
     if (value.toString() == "") {
       return " Day is Null ";
-    } else {
-      return null;
-    }
-  }
-
-  static String? PlaceValidator(String value) {
-    if (value.toString() == "") {
-      return " Place is Null ";
-    } else {
-      return null;
-    }
-  }
-
-  static String? AmountValidator(String value) {
-    if (value.toString() == "") {
-      return " Amount is Null ";
     } else {
       return null;
     }
